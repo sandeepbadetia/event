@@ -39,7 +39,7 @@ class Event(models.Model):
     name = models.CharField(max_length=255, unique=True)
     uid = models.PositiveIntegerField(unique=True)
     description = RichTextUploadingField()
-    job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE,null=True , blank=True)
     select_scheduled_status = (
         ('yet to scheduled', 'Yet to Scheduled'),
         ('scheduled', 'Scheduled')
@@ -48,7 +48,7 @@ class Event(models.Model):
     venue = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
-    location = LocationField()
+    location = LocationField(null=True , blank=True)
     points = models.PositiveIntegerField()
     maximum_attende = models.PositiveIntegerField()
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True, related_name='event_created_user')
